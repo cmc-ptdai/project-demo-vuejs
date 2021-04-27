@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="menu-flex">
     <li v-for="item in menu" :key="item.title">
       <a>{{ item.title }}</a>
       <ul v-if="item.children" class="list__menu__children">
@@ -25,7 +25,7 @@ export default {
 }
 </script>
 <style lang="scss">
-  .flex {
+  .menu-flex {
     display: flex;
     width: 100%;
   }

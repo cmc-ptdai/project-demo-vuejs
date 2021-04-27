@@ -2,7 +2,7 @@ import axiosClient from './apiClient'
 
 const Slides = {
   getSlides: () => {
-    const url = '/slides/'
+    const url = '/slide'
     return axiosClient.get(url)
   }
 }

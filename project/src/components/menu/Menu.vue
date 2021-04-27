@@ -115,7 +115,7 @@ $Green: #80bb35;
   margin: auto;
   padding: 0px 10%;
   background-color: $Green;
-
+  margin-bottom: 20px;
   a {
     color:#fff !important;
     font-size: 20px;
