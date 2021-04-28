@@ -15,7 +15,7 @@
         <router-link
             :to="'/ProductDetail/'+ product.id"
         >
-          <button class="item__card--seeMore" @click="goToDetail(product.id)">Xem thêm</button>
+          <button class="item__card--seeMore">Xem thêm</button>
         </router-link>
 
         <a>

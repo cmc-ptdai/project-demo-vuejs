@@ -70,19 +70,19 @@
         </div>
       </div>
     </div>
-    <div>
-    <a-tabs default-active-key="1" @change="callback">
-      <a-tab-pane key="1" tab="Mô tả">
-        mô tả sản phẩm
-      </a-tab-pane>
-      <a-tab-pane key="2" tab="Thông tin" >
-        thông tin sản phẩm
-      </a-tab-pane>
-      <a-tab-pane key="3" tab="Đánh giá">
-        <h3>Đánh giá sản phẩm</h3>
-      </a-tab-pane>
-    </a-tabs>
-  </div>
+    <div class="myTabs">
+      <a-tabs default-active-key="1" @change="callback">
+        <a-tab-pane key="1" tab="Mô tả" >
+          mô tả sản phẩm
+        </a-tab-pane>
+        <a-tab-pane key="2" tab="Thông tin" >
+          thông tin sản phẩm
+        </a-tab-pane>
+        <a-tab-pane key="3" tab="Đánh giá">
+          <h3>Đánh giá sản phẩm</h3>
+        </a-tab-pane>
+      </a-tabs>
+    </div>
 
   </div>
 </template>
@@ -109,11 +109,15 @@ export default {
     async fetchApi() {
       const respons = await axiosProduct.getById(this.$route.params.id)
       this.product = respons[0]
+    },
+    callback() {
+
     }
   },
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+$Green: #80bb35;
 .search__title {
     background-color: #80bb35;
     border-radius: 10px;
@@ -230,69 +234,29 @@ export default {
     }
   }
 }
-.evaluate {
-  button {
-    margin-left: 310px;
-    background-color: #80bb35;
-    border: 1px solid #80bb35;
-    border-radius: 5px;
-    padding: 5px 10px ;
-    color: #fff;
-    font-weight: 600;
-    font-size: 16px;
-  }
-}
 
-.evaluateDisable {
-  button {
-    margin-left: 240px;
-    background-color: #ccc;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 5px 10px ;
-    color: #fff;
-    font-weight: 600;
-    font-size: 16px;
-  }
-  span {
-    display: inline-block;
-    text-align: center;
-    margin-left: 20px;
-  }
-}
-
-.fromEvaluate {
-  &__btn {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    button:nth-last-child(1) {
-      margin-left: 130px;
+.myTabs {
+  margin: 30px 0px;
+  .ant-tabs-nav-wrap {
+    .ant-tabs-tab-active{
+      background-color: #fe9705 !important;
+      color: #fff !important;
+    }
+    .ant-tabs-tab {
+      background-color: #80bb35;
+      color: #fff !important;
+    }
+    .ant-tabs-ink-bar {
+      background-color: #80bb35;
     }
   }
+  .ant-tabs .ant-tabs-top-content > .ant-tabs-tabpane, .ant-tabs .ant-tabs-bottom-content > .ant-tabs-tabpane {
+    border-radius: 10px;
+    padding: 20px 10px;
+    background-color: #fff;
+  }
 }
 
-.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab-active, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab-active {
-  background-color: #fe9705 !important;
-}
-.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
-  color: #fff;
-}
-.ant-tabs-tabpane {
-  border: 1px solid black;
-  border-radius: 10px;
-  padding: 20px 10px;
-  background-color: #fff;
-}
-.ant-tabs-card > .ant-tabs-nav .ant-tabs-tab, .ant-tabs-card > div > .ant-tabs-nav .ant-tabs-tab {
-  background-color: #80bb35;
-  color: #fff ;
-}
-.ant-notification {
-  margin-top: 50px;
-}
-.ant-notification-notice {
-  background-color: #ccc;
-}
+
 
 </style>
