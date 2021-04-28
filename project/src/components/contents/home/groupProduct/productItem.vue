@@ -11,9 +11,13 @@
       />
         <p>{{product.name}}</p>
         <h3>{{product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}} VND</h3>
-        <a >
-          <button className="item__card--seeMore">Xem thêm</button>
-        </a>
+
+        <router-link
+            :to="'/ProductDetail/'+ product.id"
+        >
+          <button class="item__card--seeMore" @click="goToDetail(product.id)">Xem thêm</button>
+        </router-link>
+
         <a>
           <button
             :class="product.countPay > 0 ? 'item__card--buy' : 'item__card--disabledBuy'"
@@ -31,7 +35,9 @@ export default {
     product: {
       type: Object
     }
-  }
+  },
+  methods: {
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -44,44 +50,44 @@ export default {
   margin: auto;
   margin-top: 15px;
   transition: all 0.5s ease;
-}
-&:hover img {
-  transform: scale(1.1);
-}
-&__card {
-  text-align: center;
-  border-radius: 10px;
-  button {
-    width: 75px;
-    border: none;
-    border-radius: 5px;
-    font-weight: 500;
-    height: 30px;
-    transition: all 0.3s ease;
-    &:nth-child(1) {
-      margin-right: 5px;
+  }
+  &:hover img {
+    transform: scale(1.1);
+  }
+  &__card {
+    text-align: center;
+    border-radius: 10px;
+    button {
+      width: 75px;
+      border: none;
+      border-radius: 5px;
+      font-weight: 500;
+      height: 30px;
+      transition: all 0.3s ease;
+      &:nth-child(1) {
+        margin-right: 5px;
+      }
+    }
+    &--seeMore {
+      background-color: #80bb35;
+      color: #fff;
+      cursor: pointer;
+      &:hover {
+        background-color: #fe9705;
+      }
+    }
+    &--buy {
+      background-color: #80bb35;
+      color: #fff;
+      cursor: pointer;
+      &:hover {
+        background-color: #fe9705;
+      }
+    }
+    &--disabledBuy {
+      background-color: #ccc;
+      color: #fff;
     }
   }
-  &--seeMore {
-    background-color: #80bb35;
-    color: #fff;
-    cursor: pointer;
-    &:hover {
-      background-color: #fe9705;
-    }
-  }
-  &--buy {
-    background-color: #80bb35;
-    color: #fff;
-    cursor: pointer;
-    &:hover {
-      background-color: #fe9705;
-    }
-  }
-  &--disabledBuy {
-    background-color: #ccc;
-    color: #fff;
-  }
-}
 }
 </style>

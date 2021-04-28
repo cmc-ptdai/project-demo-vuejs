@@ -2,23 +2,25 @@
     <div>
       <Header/>
       <Menu/>
-      <Home/>
+      <div class="content">
+        <router-view />
+      </div>
     </div>
 </template>
 <script>
 import Header from './header/Header'
 import Menu from './menu/Menu'
-import Home from './contents/home/Home'
 
 
 export default {
   components: {
       Header,
-      Menu,
-      Home
+      Menu
   },
 }
 </script>
-<style lang="scss" scoped>
-
+<style lang="scss">
+.content {
+  width: 100%;
+}
 </style>

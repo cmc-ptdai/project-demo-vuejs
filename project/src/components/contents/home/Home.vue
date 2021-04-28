@@ -36,8 +36,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.home {
-  width: 80%;
-  margin: auto;
-}
+
 </style>

@@ -23,55 +23,67 @@ export default {
       menu: [
         {
           title: 'Trang chủ',
-          path: '/'
+          path: '/',
+          exact :true
         },
         {
           title: 'Sản Phẩm',
           path: '/products',
+          exact :true ,
           children: [
             {
               title: 'Rau xanh',
-              path: '/vegetable'
+              path: '/vegetable',
+              exact : false
             },
             {
               title: 'Củ',
               path: '/tubers',
+              exact : false ,
               children: [
                 {
                   title: 'Quả tươi',
-                  path: '/t'
+                  path: '/t',
+                  exact : false
                 },
                 {
                   title: 'Quả khô',
-                  path: '/k'
+                  path: '/k',
+                  exact : false
                 }
               ]
             },
             {
               title: 'Quả',
               path: '/fruit',
+              exact : false ,
               children: [
                 {
                   title: 'Quả tươi',
-                  path: '/t'
+                  path: '/t',
+                  exact : false ,
                 },
                 {
                   title: 'Quả khô',
-                  path: '/k'
+                  path: '/k',
+                  exact : false ,
                 }
               ]
             },
             {
               title: 'Nấm',
               path: '/mushroom',
+              exact : false ,
               children: [
                 {
                   title: 'Quả tươi',
-                  path: '/t'
+                  path: '/t',
+                  exact : false ,
                 },
                 {
                   title: 'Quả khô',
-                  path: '/k'
+                  path: '/k',
+                  exact : false ,
                 }
               ]
             },
@@ -79,19 +91,23 @@ export default {
         },
         {
           title: 'Tin tức',
-          path: '/vegetable'
+          path: '/vegetable',
+          exact : false ,
         },
         {
           title: 'Giới thiệu',
-          path: '/tubers'
+          path: '/tubers',
+          exact : false ,
         },
         {
           title: 'Liên hệ',
-          path: '/fruit'
+          path: '/fruit',
+          exact : false ,
         },
         {
           title: 'Chỉ đường',
-          path: '/mushroom'
+          path: '/mushroom',
+          exact : false ,
         }
       ]
     }
@@ -120,6 +136,7 @@ $Green: #80bb35;
     color:#fff !important;
     font-size: 20px;
     font-weight: 500;
+    text-decoration: none !important;
   }
   li {
     position: relative;
@@ -162,5 +179,8 @@ $Green: #80bb35;
     z-index: 10;
   }
 
+}
+.router-link-exact-active {
+  background-color: $Orange;
 }
 </style>

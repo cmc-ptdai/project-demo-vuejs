@@ -4,21 +4,15 @@
       <p>{{title}}</p>
     </div>
       <VueSlickCarousel
-        :arrows="true"
-        :dots="true"
-        :slidesToShow="3"
-        :slidesToScroll="3"
-        :autoplay="true"
-        :speed="2000"
-        :autoplaySpeed="3000"
-        :dotsClass= "'slick-dots custom-dot-class'"
+        v-bind="settings"
+        ref="carousel" v-if="listProduct.length"
         >
         <div v-for="item in listProduct" :key="item.id">
           <ProductItem :product="item"/>
         </div>
       </VueSlickCarousel>
-      <div class="group-product__seeMore" onClick={seeMoreProduct}>
-        <a >xem thêm <i class="fad fa-chevron-double-right"></i></a>
+      <div class="group-product__seeMore" >
+        <a>xem thêm <i class="fad fa-chevron-double-right"></i></a>
       </div>
     </div>
 </template>
@@ -34,6 +28,42 @@ export default {
   name: 'MyComponent',
   data() {
     return {
+      settings: {
+        "arrows": true,
+        "dots": false,
+        "slidesToShow": 5,
+        "slidesToScroll": 3,
+        "autoplay": true,
+        "speed": 2000,
+        "autoplaySpeed": 3000,
+        "dotsClass":'slick-dots custom-dot-class',
+  "responsive": [
+    {
+      "breakpoint": 1024,
+      "settings": {
+        "slidesToShow": 3,
+        "slidesToScroll": 3,
+        "infinite": true,
+        "dots": true
+      }
+    },
+    {
+      "breakpoint": 600,
+      "settings": {
+        "slidesToShow": 2,
+        "slidesToScroll": 2,
+        "initialSlide": 2
+      }
+    },
+    {
+      "breakpoint": 480,
+      "settings": {
+        "slidesToShow": 1,
+        "slidesToScroll": 1
+      }
+    }
+  ]
+}
     }
   },
   computed: {

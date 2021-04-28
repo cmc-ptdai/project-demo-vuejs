@@ -15,7 +15,6 @@ const actions = {
   fetchUser ({ commit }) {
     axios.get('http://localhost:3004/users')
     .then(response => {
-      console.log(response);
       commit('SET_USERS', response.data);
     })
   }
