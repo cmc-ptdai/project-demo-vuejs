@@ -72,15 +72,42 @@
     </div>
     <div class="myTabs">
       <a-tabs default-active-key="1" @change="callback">
+
         <a-tab-pane key="1" tab="Mô tả" >
           mô tả sản phẩm
         </a-tab-pane>
+
         <a-tab-pane key="2" tab="Thông tin" >
           thông tin sản phẩm
         </a-tab-pane>
+
         <a-tab-pane key="3" tab="Đánh giá">
           <h3>Đánh giá sản phẩm</h3>
+          <a-rate v-model="value" />
+          <span >
+            <button class="evaluate" @click="showModal">Đánh giá sản phẩm</button>
+            <!-- <span style={{display: user.id === undefined ? 'block' : 'none'}}>( Đằng nhập để gửi đánh giá của bạn )</span> -->
+          </span>
+
+          <a-modal v-model="visible" title="Title" on-ok="handleOk">
+            <template slot="footer">
+              <a-button key="back" @click="handleCancel">
+                Return
+              </a-button>
+              <a-button key="submit" type="primary" @click="handleOk">
+                Submit
+              </a-button>
+            </template>
+
+              <span>Đánh giá của bạn về sản phẩm: </span>
+              <a-rate v-model="myValue" />
+          </a-modal>
         </a-tab-pane>
+
+        <a-tab-pane key="4" tab="Bình luận" >
+          thông tin sản phẩm
+        </a-tab-pane>
+
       </a-tabs>
     </div>
 
@@ -94,7 +121,10 @@ export default {
   data() {
     return {
       product: {},
-      number: 0
+      number: 0,
+      value: 3,
+      visible: false,
+      myValue: 0,
     }
   },
   computed: {
@@ -110,14 +140,27 @@ export default {
       const respons = await axiosProduct.getById(this.$route.params.id)
       this.product = respons[0]
     },
+
     callback() {
 
-    }
+    },
+
+    showModal() {
+      this.visible = true;
+    },
+
+    handleOk() {
+        this.visible = false;
+        console.log(this.myValue);
+    },
+
+    handleCancel() {
+      this.visible = false;
+    },
   },
 }
 </script>
 <style lang="scss">
-$Green: #80bb35;
 .search__title {
     background-color: #80bb35;
     border-radius: 10px;
@@ -234,6 +277,16 @@ $Green: #80bb35;
     }
   }
 }
+.evaluate {
+  margin-left: 310px;
+  background-color: #80bb35;
+  border: 1px solid #80bb35;
+  border-radius: 5px;
+  padding: 5px 10px ;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+}
 
 .myTabs {
   margin: 30px 0px;
@@ -245,9 +298,10 @@ $Green: #80bb35;
     .ant-tabs-tab {
       background-color: #80bb35;
       color: #fff !important;
+      margin-right: 10px;
     }
     .ant-tabs-ink-bar {
-      background-color: #80bb35;
+      display: none !important;
     }
   }
   .ant-tabs .ant-tabs-top-content > .ant-tabs-tabpane, .ant-tabs .ant-tabs-bottom-content > .ant-tabs-tabpane {
