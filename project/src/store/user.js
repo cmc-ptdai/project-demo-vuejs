@@ -26,7 +26,6 @@ const mutation = {
   }
 }
 
-console.log(state);
 export default {
   state,
   getter,

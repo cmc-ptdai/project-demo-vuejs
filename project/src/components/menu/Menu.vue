@@ -33,12 +33,12 @@ export default {
           children: [
             {
               title: 'Rau xanh',
-              path: '/vegetable',
+              path: '/products/vegetable',
               exact : false
             },
             {
               title: 'Củ',
-              path: '/tubers',
+              path: '/products/tubers',
               exact : false ,
               children: [
                 {
@@ -55,7 +55,7 @@ export default {
             },
             {
               title: 'Quả',
-              path: '/fruit',
+              path: '/products/fruit',
               exact : false ,
               children: [
                 {
@@ -72,7 +72,7 @@ export default {
             },
             {
               title: 'Nấm',
-              path: '/mushroom',
+              path: '/products/mushroom',
               exact : false ,
               children: [
                 {
@@ -91,22 +91,22 @@ export default {
         },
         {
           title: 'Tin tức',
-          path: '/vegetable',
+          path: '/products/vegetable',
           exact : false ,
         },
         {
           title: 'Giới thiệu',
-          path: '/tubers',
+          path: '/products/tubers',
           exact : false ,
         },
         {
           title: 'Liên hệ',
-          path: '/fruit',
+          path: '/products/fruit',
           exact : false ,
         },
         {
           title: 'Chỉ đường',
-          path: '/mushroom',
+          path: '/products/mushroom',
           exact : false ,
         }
       ]
@@ -178,9 +178,8 @@ $Green: #80bb35;
     animation-duration: 0.5s;
     z-index: 10;
   }
-
-}
-.router-link-exact-active {
-  background-color: $Orange;
+  .router-link-exact-active {
+    background-color: $Orange;
+  }
 }
 </style>

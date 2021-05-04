@@ -52,14 +52,16 @@
               <label>Số lượng: </label>
 
               <div class="addNumber">
-                <button class="minus" >-</button>
+                <button class="minus" @click="decrement">-</button>
                 <input type="number" v-model="number"/>
-                <button class="plus" >+</button>
+                <button class="plus" @click="increment">+</button>
               </div>
 
               <button
                 :class="product.countPay > 0 ? 'buy' : 'disabledBuy'"
-                :disabled ="product.countPay > 0 ? false : true">
+                :disabled ="product.countPay > 0 ? false : true"
+                @click="addToCart"
+              >
                 Mua hàng
               </button>
 
@@ -92,10 +94,10 @@
           <a-modal v-model="visible" title="Title" on-ok="handleOk">
             <template slot="footer">
               <a-button key="back" @click="handleCancel">
-                Return
+                cancel
               </a-button>
               <a-button key="submit" type="primary" @click="handleOk">
-                Submit
+                gửi
               </a-button>
             </template>
 
@@ -141,6 +143,18 @@ export default {
       this.product = respons[0]
     },
 
+    increment() {
+      this.number++
+    },
+
+    decrement() {
+      this.number--
+    },
+
+    addToCart() {
+      console.log(this.number);
+      this.number = 0
+    },
     callback() {
 
     },
@@ -228,6 +242,7 @@ export default {
         text-align: center;
         border: 1px solid black;
         margin: 0px 15px;
+        padding-left: 10px;
       }
       .plus {
         cursor: pointer;
@@ -287,7 +302,6 @@ export default {
   font-weight: 600;
   font-size: 16px;
 }
-
 .myTabs {
   margin: 30px 0px;
   .ant-tabs-nav-wrap {
