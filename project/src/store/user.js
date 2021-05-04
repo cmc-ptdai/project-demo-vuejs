@@ -1,8 +1,6 @@
-import axios from 'axios'
-
 
 const state = {
-  listUser : []
+  listUser : {}
 }
 
 
@@ -12,23 +10,17 @@ const getter = {
 }
 
 const actions = {
-  fetchUser ({ commit }) {
-    axios.get('http://localhost:3004/users')
-    .then(response => {
-      commit('SET_USERS', response.data);
-    })
-  }
+
 }
 
-const mutation = {
-  SET_USERS(payload) {
-    this.state = payload
+const mutations = {
+  SET_USERS(state, payload) {
+    this.state.listUser = payload
   }
 }
-
 export default {
   state,
   getter,
   actions,
-  mutation
+  mutations
 }

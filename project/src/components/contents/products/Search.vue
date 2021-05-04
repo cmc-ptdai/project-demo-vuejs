@@ -17,6 +17,7 @@
         </div>
         <div class="search__content">
           <ul>
+            <li>Tất cả</li>
             <li v-for="(item, index) in prices" :key="index" @click="searchByPrice(item)">
               <p>
                 {{item.price1 === 0 ? 'dưới' : item.price1 === 1000000 ? 'trên' : item.price1 + '->'}}
@@ -123,6 +124,7 @@ export default {
     li {
       margin: 5px 0px;
       transition: all 0.2s ease;
+      cursor: pointer;
     }
     li:hover {
       color: #80bb35;

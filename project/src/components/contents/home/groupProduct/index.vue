@@ -11,8 +11,13 @@
           <ProductItem :product="item"/>
         </div>
       </VueSlickCarousel>
-      <div class="group-product__seeMore" >
-        <a>xem thêm <i class="fad fa-chevron-double-right"></i></a>
+      <div class="group-product__seeMore">
+        <router-link
+          :to="this.path"
+        >
+          xem thêm
+          <i class="fad fa-chevron-double-right"/>
+        </router-link>
       </div>
     </div>
 </template>
@@ -83,6 +88,9 @@ export default {
     },
     species: {
       type : String
+    },
+    path: {
+      type : String
     }
   },
   components: { VueSlickCarousel,ProductItem },
@@ -95,7 +103,31 @@ export default {
   margin-left: 15px;
   .slick-prev:before, .slick-next:before {
     color: #ccc;
-    font-size: 30px
+    font-size: 30px;
+  }
+  .slick-prev {
+    visibility: hidden;
+    transform: translateX(50px);
+    z-index: 50;
+    transition: all .3s ease-in-out;
+  }
+  .slick-next {
+    visibility: hidden;
+    transform: translateX(-100px);
+    z-index: 50;
+    transition: all .3s ease-in-out;
+  }
+  .slick-slider {
+    &:hover {
+      .slick-prev {
+        visibility: visible;
+        transform: translateX(-13px);
+      }
+      .slick-next {
+        visibility: visible;
+        transform: translateX(-18px);
+      }
+    }
   }
   &__title {
     width: 15%;
@@ -113,9 +145,7 @@ export default {
     line-height: 40px;
     margin: auto;
     margin-top: 20px;
-
     border-bottom: 1px solid #ccc;
-
     font-size: 18px;
     font-weight: 500;
     color: #007bff;

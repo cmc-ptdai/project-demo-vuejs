@@ -21,11 +21,13 @@ export default {
       type: Array
     }
   },
+
   data() {
     return {
 
     }
   },
+
 }
 </script>
 <style lang="scss">

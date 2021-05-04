@@ -1,17 +1,18 @@
-<template lang="">
-  <div class="list__menu">
-    <a-row>
-      <a-col :span="18">
-        <ul >
-          <MenuItem :menu="menu"/>
-        </ul>
-      </a-col>
-
-      <a-col :span="6">
-        <Search/>
-      </a-col>
-    </a-row>
-  </div>
+<template>
+  <a-affix :offset-top="0">
+    <div class="list__menu">
+      <a-row>
+        <a-col :span="18">
+          <ul >
+            <MenuItem :menu="menu"/>
+          </ul>
+        </a-col>
+        <a-col :span="6">
+          <Search/>
+        </a-col>
+      </a-row>
+    </div>
+  </a-affix>
 </template>
 <script>
 import MenuItem from './MenuItem'

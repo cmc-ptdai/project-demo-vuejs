@@ -1,12 +1,12 @@
 <template>
   <div class="home">
     <Slide/>
-    <GroupProduct :products="products" title="rau xanh" loai="rau"/>
-    <GroupProduct :products="products" title="củ tươi" loai="cu"/>
-    <GroupProduct :products="products" title="quả tươi" loai="qua"/>
-    <GroupProduct :products="products" title="nấm" loai="nam"/>
-    <GroupProduct :products="products" title="đồ tươi" species="tuoi"/>
-    <GroupProduct :products="products" title="đồ khô" species="kho"/>
+    <GroupProduct :products="products" title="rau xanh" loai="rau" path="/products/vegetable"/>
+    <GroupProduct :products="products" title="củ tươi" loai="cu" path="/products/tubers"/>
+    <GroupProduct :products="products" title="quả tươi" loai="qua" path="/products/fruit"/>
+    <GroupProduct :products="products" title="nấm" loai="nam" path="/products/mushroom"/>
+    <GroupProduct :products="products" title="đồ tươi" species="tuoi" path="/products/vegetable"/>
+    <GroupProduct :products="products" title="đồ khô" species="kho" path="/products/vegetable"/>
   </div>
 </template>
 <script>

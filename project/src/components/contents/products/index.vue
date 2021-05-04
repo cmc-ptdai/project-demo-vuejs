@@ -13,8 +13,24 @@
             <Sort />
           </div>
           <div class="row">
-            <div class="col-sm-12 col-lg-4 item" v-for="item in listSort" :key="item.id">
-              <ProductItem :product="item" />
+            <div class="col-lg-12">
+              <a-pagination
+                v-model="current"
+                show-size-changer
+                :page-size.sync="pageSize"
+                :total="listSort.length"
+                @showSizeChange="onShowSizeChange"
+              />
+            </div>
+
+            <div class="row">
+              <div
+                class="col-sm-12 col-lg-4 item"
+                v-for="item in listSort"
+                :key="item.id"
+              >
+                <ProductItem :product="item" />
+              </div>
             </div>
           </div>
         </div>
@@ -33,7 +49,10 @@ export default {
     return {
       listProduct: [],
       listSort: [],
-      keySort: ''
+      keySort: '',
+      pageSize: 5,
+      current: 1,
+      numberProduct: [],
     }
   },
   created() {
@@ -80,9 +99,28 @@ export default {
       const newArr = this.listProduct.filter(item => (item.price >= key.price1 && item.price <= key.price2))
       this.listSort = newArr
     })
+    EventBus.$on('dataSearch', (listProduct) => {
+      this.listSort = listProduct
+    })
   },
+
+  // updated() {
+  //   this.setProductPage()
+  //   console.log(this.numberProduct);
+  // },
   watch: {
     '$route': 'fetchProduct',
+
+    // pageSize(val) {
+    //   console.log('pageSize', val);
+    // },
+
+    // current() {
+    //   for(let i = 0; i < this.page * this.current; i++) {
+    //     this.numberProduct.push(this.listSort[i]);
+    //   }
+    //   console.log(this.numberProduct);
+    // },
   },
   methods: {
     async fetchProduct() {
@@ -97,6 +135,7 @@ export default {
           const respons = await axiosProduct.getAll()
           this.listProduct = respons
           this.listSort = respons
+
         } else {
           const respons = await axiosProduct.getAll(params)
           this.listProduct = respons
@@ -107,7 +146,16 @@ export default {
       }
 
     },
+    setProductPage() {
+      for (let i = 0; i < 5; i++) {
+        this.numberProduct.push(this.listSort[i]);
+      }
+    },
 
+    onShowSizeChange(current, pageSize) {
+      this.current = 1
+      this.pageSize = pageSize
+    },
   },
   components: {
     SearchProduct,
