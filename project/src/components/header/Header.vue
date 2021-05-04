@@ -90,10 +90,6 @@ export default {
             font-weight: 700;
           }
         }
-        @keyframes moveUp {
-          from {bottom: -110%;}
-          to {bottom: 100%;}
-        }
       }
       p {
         cursor: pointer;
