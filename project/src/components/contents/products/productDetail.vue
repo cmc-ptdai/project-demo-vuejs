@@ -14,12 +14,13 @@
 
       <div  class="col-lg-9 profile">
         <div class="row">
-
           <div class="col-md-7">
-            <img
-              :src="product.img"
-              :alt="product.name"
-            />
+            <div>
+              <img
+                :src="product.img"
+                :alt="product.name"
+              />
+            </div>
           </div>
 
           <div class="col-md-5 profile__content">

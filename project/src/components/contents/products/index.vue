@@ -56,7 +56,13 @@ export default {
     }
   },
   created() {
-    this.fetchProduct()
+
+    if (this.$route.name === 'searchProduct') {
+      console.log(this.$store.state.users.dataSearch);
+      this.listProduct=this.$store.state.users.dataSearch
+      this.listSort=this.$store.state.users.dataSearch
+    } else {
+      this.fetchProduct()
     EventBus.$on('sortByProduct', (key) => {
       if(key === "1"){
         this.listSort.sort((item1, item2) => {
@@ -95,13 +101,15 @@ export default {
         })
       }
     });
+
     EventBus.$on('sortByPrice', (key) => {
       const newArr = this.listProduct.filter(item => (item.price >= key.price1 && item.price <= key.price2))
       this.listSort = newArr
     })
-    EventBus.$on('dataSearch', (listProduct) => {
-      this.listSort = listProduct
-    })
+    }
+    // EventBus.$on('dataSearch', (listProduct) => {
+    //   this.listSort = listProduct
+    // })
   },
 
   // updated() {
@@ -110,7 +118,6 @@ export default {
   // },
   watch: {
     '$route': 'fetchProduct',
-
     // pageSize(val) {
     //   console.log('pageSize', val);
     // },
@@ -146,6 +153,7 @@ export default {
       }
 
     },
+
     setProductPage() {
       for (let i = 0; i < 5; i++) {
         this.numberProduct.push(this.listSort[i]);

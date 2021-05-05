@@ -36,39 +36,41 @@ export default {
       settings: {
         "arrows": true,
         "dots": false,
-        "slidesToShow": 5,
+        "slidesToShow": 4,
         "slidesToScroll": 3,
         "autoplay": true,
-        "speed": 2000,
-        "autoplaySpeed": 3000,
+        "autoplaySpeed": 5000,
         "dotsClass":'slick-dots custom-dot-class',
-  "responsive": [
-    {
-      "breakpoint": 1024,
-      "settings": {
-        "slidesToShow": 3,
-        "slidesToScroll": 3,
+        "centerMode": true,
         "infinite": true,
-        "dots": true
+        "speed": 2000,
+        "responsive": [
+          {
+            "breakpoint": 1024,
+            "settings": {
+              "slidesToShow": 3,
+              "slidesToScroll": 3,
+              "infinite": true,
+              "dots": true
+            }
+          },
+          {
+            "breakpoint": 600,
+            "settings": {
+              "slidesToShow": 2,
+              "slidesToScroll": 2,
+              "initialSlide": 2
+            }
+          },
+          {
+            "breakpoint": 480,
+            "settings": {
+              "slidesToShow": 1,
+              "slidesToScroll": 1
+            }
+          }
+        ]
       }
-    },
-    {
-      "breakpoint": 600,
-      "settings": {
-        "slidesToShow": 2,
-        "slidesToScroll": 2,
-        "initialSlide": 2
-      }
-    },
-    {
-      "breakpoint": 480,
-      "settings": {
-        "slidesToShow": 1,
-        "slidesToScroll": 1
-      }
-    }
-  ]
-}
     }
   },
   computed: {
@@ -125,7 +127,7 @@ export default {
       }
       .slick-next {
         visibility: visible;
-        transform: translateX(-18px);
+        transform: translateX(10px);
       }
     }
   }

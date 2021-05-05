@@ -2,6 +2,7 @@ import Home from './components/contents/home/Home.vue'
 import Product from './components/contents/products/index.vue'
 import ProductDetail from './components/contents/products/productDetail.vue'
 import Cart from './components/contents/cart/Cart.vue'
+//import SearchProduct from './components/contents/products/Searchproduct.vue'
 
 export const routes = [
   {
@@ -32,4 +33,5 @@ export const routes = [
   },
   { path: '/ProductDetail/:id', name: 'ProductDetail', component: ProductDetail},
   { path: '/cart', name: 'cart', component: Cart},
+  {path: '/searchProduct', name: 'searchProduct', component: Product}
 ]

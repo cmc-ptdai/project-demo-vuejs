@@ -3,7 +3,7 @@
     <div class="search__group">
       <input type="text" name="search" placeholder="tên sản phẩm ..."  v-model="valueInput"/>
       <router-link
-        to='/products'
+        to='/searchProduct'
       >
         <button @click="searchProduct"><i class="fas fa-search" /></button>
       </router-link>
@@ -12,7 +12,6 @@
 </template>
 <script>
 import productApi from '../../api/productApi'
-import EventBus from '../../EventBus'
 
 export default {
   data() {
@@ -20,6 +19,9 @@ export default {
       valueInput: '',
       listProducts: []
     }
+  },
+  computed: {
+
   },
   created() {
     this.fetchProductApi()
@@ -30,11 +32,9 @@ export default {
       this.listProducts = respons
     },
     searchProduct() {
-      const listProduct = this.listProducts.filter(item => item.name.toLowerCase().indexOf(this.valueInput) !== -1)
+      const productSearch = this.listProducts.filter(item => item.name.toLowerCase().indexOf(this.valueInput) !== -1)
       this.valueInput = ''
-      EventBus.$emit('dataSearch', listProduct)
-      console.log(listProduct);
-      console.log('qưqwqwqw');
+      this.$store.commit('SET_DATASEARCH', productSearch)
     }
   },
 }
