@@ -85,8 +85,19 @@ const actions = {
       cart: newCart
     }
     userApi.addCart(state.listUser.id, newUser)
-  }
+  },
 
+  deleteListProduct({state}, payload) {
+    let newCart = state.listUser.cart
+    payload.forEach(id => {
+      newCart = newCart.filter(item => item.id !== id)
+    })
+    const newUser = {
+      ...state.listUser,
+      cart: newCart
+    }
+    userApi.addCart(state.listUser.id, newUser)
+  }
 
 
 }

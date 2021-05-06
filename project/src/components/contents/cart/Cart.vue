@@ -59,10 +59,14 @@
           </div>
       </template>
     </a-table>
-
-    <a-button type="primary" :disabled="!hasSelected" :loading="loading" @click="start">
-      Reload
-    </a-button>
+    <div>
+      <a-button type="danger" :disabled="!hasSelected" :loading="loadingdelete" @click="deleteListProduct">
+        Xóa
+      </a-button>
+      <a-button type="primary" :disabled="!hasSelected" :loading="loading" @click="payCart">
+        Thánh toán
+      </a-button>
+    </div>
   </div>
 </template>
 <script>
@@ -111,6 +115,7 @@ export default {
       columns,
       selectedRowKeys: [], // Check here to configure the default column
       loading: false,
+      loadingdelete: false,
     }
   },
   computed: {
@@ -134,15 +139,25 @@ export default {
       console.log(id);
     },
 
-    start() {
+    payCart() {
       this.loading = true;
       setTimeout(() => {
         this.loading = false;
         this.selectedRowKeys = [];
       }, 1000);
     },
+
+    deleteListProduct() {
+      // this.loadingdelete = true;
+      this.$store.dispatch('deleteListProduct', this.selectedRowKeys)
+      setTimeout(() => {
+        // this.loadingdelete = false;
+        this.$store.dispatch('fetchUser')
+        this.selectedRowKeys = [];
+      }, 500);
+    },
+
     onSelectChange(selectedRowKeys) {
-      console.log('selectedRowKeys changed: ', selectedRowKeys);
       this.selectedRowKeys = selectedRowKeys;
     },
   },

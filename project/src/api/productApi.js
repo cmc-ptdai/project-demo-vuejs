@@ -10,10 +10,6 @@ const productApi = {
     const url = `/products/?id=${id}`
     return axiosClient.get(url)
   },
-  // deleteProduct: (id) => {
-  //   const url = `/products/${id}`
-  //   return axiosClient.delete(url)
-  // },
   getSlide: () => {
     const url = '/slide'
     return axiosClient.get(url)
