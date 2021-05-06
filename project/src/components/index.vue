@@ -3,7 +3,7 @@
       <Header/>
       <Menu/>
       <div class="content">
-        <router-view />
+        <router-view/>
       </div>
 
       <div id="components-back-top-demo-custom">
@@ -18,7 +18,6 @@
 <script>
 import Header from './header/Header'
 import Menu from './menu/Menu'
-import UserApi from '../api/userApi'
 
 export default {
   data() {
@@ -27,13 +26,11 @@ export default {
     }
   },
   created() {
-    this.fetchUser()
+    this.$store.dispatch('fetchUser')
+    this.$store.dispatch('fetchProducts')
   },
   methods: {
-    async fetchUser() {
-      const respons = await UserApi.getUser()
-      this.$store.commit('SET_USERS', respons);
-    }
+
   },
   components: {
     Header,

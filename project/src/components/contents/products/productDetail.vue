@@ -53,9 +53,17 @@
               <label>Số lượng: </label>
 
               <div class="addNumber">
-                <button class="minus" @click="decrement">-</button>
+                <button
+                  class="minus"
+                  @click="decrement"
+                  :disabled ="product.countPay > 0 ? false : true"
+                >-</button>
                 <input type="number" v-model="number"/>
-                <button class="plus" @click="increment">+</button>
+                <button
+                  class="plus"
+                  @click="increment"
+                  :disabled ="product.countPay > 0 ? false : true"
+                >+</button>
               </div>
 
               <button
@@ -124,7 +132,7 @@ export default {
   data() {
     return {
       product: {},
-      number: 0,
+      number: 1,
       value: 3,
       visible: false,
       myValue: 0,
@@ -133,6 +141,13 @@ export default {
   computed: {
     formatPrice() {
       return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'vnd' }).format(this.product.price)
+    }
+  },
+  watch: {
+    number() {
+      if(this.number > this.product.countPay){
+        this.number = this.product.countPay
+      }
     }
   },
   created() {
@@ -145,17 +160,26 @@ export default {
     },
 
     increment() {
-      this.number++
+      if (this.number + 1 >= this.product.countPay) {
+        this.number = this.product.countPay
+      } else {
+        this.number = this.number + 1
+      }
     },
 
     decrement() {
-      this.number--
+      if (this.number - 1 <= 1) {
+        return this.number = 1
+      } else {
+        return this.number--
+      }
     },
 
     addToCart() {
-      console.log(this.number);
-      this.number = 0
+      this.$store.dispatch('addCart', { item: this.product, count: this.number})
+      this.number = 1
     },
+
     callback() {
 
     },

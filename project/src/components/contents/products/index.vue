@@ -63,7 +63,7 @@ export default {
       this.listSort=this.$store.state.users.dataSearch
     } else {
       this.fetchProduct()
-    EventBus.$on('sortByProduct', (key) => {
+      EventBus.$on('sortByProduct', (key) => {
       if(key === "1"){
         this.listSort.sort((item1, item2) => {
           if (item1.price > item2.price) {
@@ -151,7 +151,6 @@ export default {
       } catch (err) {
         console.log(err);
       }
-
     },
 
     setProductPage() {

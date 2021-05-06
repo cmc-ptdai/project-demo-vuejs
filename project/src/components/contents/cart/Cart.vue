@@ -6,7 +6,7 @@
     <a-table
       :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange }"
       :columns="columns"
-      :data-source="data"
+      :data-source="this.$store.state.users.listUser.cart"
       rowKey="id"
     >
 
@@ -35,7 +35,7 @@
 
       <template slot="countPrice" slot-scope="text, record">
         <div className = "cart__box-text">
-          <p>{{record.price * record.count}} VND</p>
+          <p>{{(record.price * record.count).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}} VND</p>
         </div>
       </template>
 
@@ -53,7 +53,7 @@
               />
             <button
               class="cart__box-text--plus"
-              @lick="increment(record.id)"
+              @click="increment(record.id)"
               :disabled="record.count > record.countPay  ? true : false"
             >+</button>
           </div>
@@ -105,44 +105,9 @@ const columns = [
     },
   ];
 
-
-
 export default {
   data() {
     return {
-      data: [
-        {
-      "id": 17,
-      "name": "Hành",
-      "price": 50000,
-      "countPay": 0,
-      "count": 2,
-      "img": "https://bizweb.dktcdn.net/thumb/1024x1024/100/325/688/products/hanh-kho.jpg?v=1539588166193",
-      "typeID": "rau",
-      "species": "kho",
-      "comments": {},
-      "evaluates": [
-        {
-          "id": 2,
-          "point": 5
-        },
-        {
-          "id": 1,
-          "point": 4
-        },
-        {
-          "id": 5,
-          "point": 4.5
-        },
-        {
-          "id": 3,
-          "point": 3
-        }
-      ],
-      "country": "viet Nam"
-    },
-
-      ],
       columns,
       selectedRowKeys: [], // Check here to configure the default column
       loading: false,
@@ -154,9 +119,21 @@ export default {
     },
   },
   methods: {
-    onDeletepProduct() {
-
+    onDeletepProduct(id) {
+      this.$store.dispatch('deleteProductByCart', id)
+      setTimeout(() => {
+        this.$store.dispatch('fetchUser')
+      }, 100);
     },
+
+    decrement(id) {
+      console.log(id);
+    },
+
+    increment(id) {
+      console.log(id);
+    },
+
     start() {
       this.loading = true;
       setTimeout(() => {

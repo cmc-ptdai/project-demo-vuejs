@@ -21,8 +21,7 @@
         <a-col :span="6" >
           <router-link to="/cart" class="cart">
             <i class="fas fa-shopping-cart">
-              <!-- {newCart ? newCart.length : '0'} -->
-              <span>0</span>
+              <span>{{this.$store.state.users.listUser.cart.length ? this.$store.state.users.listUser.cart.length : '0'}}</span>
             </i>
           </router-link>
         </a-col>
@@ -33,10 +32,10 @@
 export default {
     data() {
       return {
-
       }
     },
     methods: {
+
     }
 }
 </script>

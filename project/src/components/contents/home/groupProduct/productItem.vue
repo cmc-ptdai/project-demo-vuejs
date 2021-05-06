@@ -32,7 +32,6 @@
 </template>
 <script>
 //import { prototype } from 'vue/types/umd'
-import userApi from '../../../../api/userApi'
 
 export default {
   props: {
@@ -47,64 +46,10 @@ export default {
   },
   methods: {
     addCart() {
-      if(this.getIdUser.id) {
-        const newCart = this.getIdUser.cart;
-
-        if (newCart.length > 0) {
-          const index = newCart.findIndex(item => item.id === this.product.id)
-          if (index !== -1) {
-            const newproduct = {
-              ...newCart[index],
-              count: newCart[index].count + 1,
-              countPay: newCart[index].countPay - 1
-            }
-
-
-            newCart.splice(index, 1, newproduct)
-            const newUser = {
-              ...this.getIdUser,
-              cart: newCart
-            }
-
-            userApi.addCart(this.getIdUser.id, newUser)
-          } else {
-            const newproduct = {
-              id: this.product.id,
-              name: this.product.name,
-              price: this.product.price,
-              img: this.product.img,
-              count: 1,
-              countPay: this.product.countPay - 1,
-            }
-            newCart.push(newproduct)
-            const newUser = {
-              ...this.getIdUser,
-              cart: newCart
-            }
-
-            userApi.addCart(this.getIdUser.id, newUser)
-          }
-        } else {
-          const newproduct = {
-            id: this.product.id,
-            name: this.product.name,
-            price: this.product.price,
-            img: this.product.img,
-            count: 1,
-            countPay: this.product.countPay - 1,
-          }
-          newCart.push(newproduct)
-          const newUser = {
-              ...this.getIdUser,
-              cart: newCart
-            }
-          console.log(newUser);
-          userApi.addCart(this.getIdUser.id, newUser)
-        }
-      } else {
-        this.$store.commit('addCartByHome', this.product)
-        console.log('aaaaaaa');
-      }
+      this.$store.dispatch('addCart', {item: this.product, count: 1})
+      setTimeout(() => {
+        this.$store.dispatch('fetchUser')
+      }, 100);
     }
   },
 }
