@@ -7,17 +7,19 @@
       </div>
 
       <div id="components-back-top-demo-custom">
-    <a-back-top>
-      <div class="ant-back-top-inner">
-        <i class="fas fa-arrow-up" />
+        <a-back-top>
+          <div class="ant-back-top-inner">
+            <i class="fas fa-arrow-up" />
+          </div>
+        </a-back-top>
       </div>
-    </a-back-top>
-  </div>
+      <Footter/>
     </div>
 </template>
 <script>
 import Header from './header/Header'
 import Menu from './menu/Menu'
+import Footter from './footter/Footter'
 
 export default {
   data() {
@@ -34,7 +36,8 @@ export default {
   },
   components: {
     Header,
-    Menu
+    Menu,
+    Footter
   },
 }
 </script>

@@ -26,14 +26,17 @@ const actions = {
   },
 
   addCart({commit, state}, product) {
+    console.log(product);
     if(state.listUser.id) {
         const newCart = state.listUser.cart;
         if (newCart.length >= 1) {
           const index = newCart.findIndex(item => item.id === product.item.id)
           if (index !== -1) {
+            console.log(newCart[index].countPay);
             const newProduct = {
               ...newCart[index],
-              count: newCart[index].count + product.count
+              count: newCart[index].count + product.count,
+              countPay : newCart[index].countPay
             }
             newCart.splice(index, 1, newProduct)
             const newUser = {
@@ -42,12 +45,14 @@ const actions = {
             }
             userApi.addCart(state.listUser.id, newUser)
           } else {
+            console.log(product.item.countPay);
             const newproduct = {
               id: product.item.id,
               name: product.item.name,
               price: product.item.price,
               img: product.item.img,
               count: product.count,
+              countPay: product.item.countPay
             }
             newCart.push(newproduct)
             const newUser = {
@@ -63,6 +68,7 @@ const actions = {
             price: product.item.price,
             img: product.item.img,
             count: product.count,
+            countPay: product.item.countPay
           }
           newCart.push(newProduct)
           const newUser = {
@@ -96,10 +102,82 @@ const actions = {
       ...state.listUser,
       cart: newCart
     }
+
     userApi.addCart(state.listUser.id, newUser)
+  },
+
+  incrementProjectByCart({state}, payload) {
+    const [...newCart] = state.listUser.cart
+    const newDataCart = newCart.map(item => {
+      if (item.id === payload) {
+        return {
+          ...item,
+          count: ++item.count
+        }
+      }
+      return item
+    })
+    const newUser = {
+      ...state.listUser,
+      cart: newDataCart
+    }
+    userApi.addCart(state.listUser.id, newUser)
+  },
+
+  decrementProjectByCart({state}, payload) {
+    const [...newCart] = state.listUser.cart
+    const newDataCart = newCart.map(item => {
+      if (item.id === payload) {
+        return {
+          ...item,
+          count: --item.count
+        }
+      }
+      return item
+    })
+    const newUser = {
+      ...state.listUser,
+      cart: newDataCart
+    }
+    userApi.addCart(state.listUser.id, newUser)
+  },
+
+  changeNumberProjectByCart({state}, payload) {
+    console.log(payload);
+    const [...newCart] = state.listUser.cart
+    const newDataCart = newCart.map(item => {
+      if (item.id === Number(payload.id)) {
+        if (payload.number === "") {
+          return {
+            ...item,
+            count: 1
+          }
+        }
+        if(payload.number > item.countPay) {
+          return {
+            ...item,
+            count: item.countPay
+          }
+        } else {
+          return {
+            ...item,
+            count: payload.number
+          }
+        }
+      }
+      return item
+    })
+    const newUser = {
+      ...state.listUser,
+      cart: newDataCart
+    }
+    userApi.addCart(state.listUser.id, newUser)
+  },
+
+  addOder({state}, payload) {
+    console.log(state);
+    console.log(payload);
   }
-
-
 }
 
 const mutations = {
