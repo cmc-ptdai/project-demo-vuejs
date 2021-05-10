@@ -1,11 +1,20 @@
 <template>
   <div class="footter">
-
+s
   </div>
 </template>
 <script>
 export default {
-
+  data() {
+    return {
+      visiable: false,
+    }
+  },
+  methods: {
+    lolphong() {
+      this.visiable = !this.visiable
+    }
+  },
 }
 </script>
 <style lang="scss">
