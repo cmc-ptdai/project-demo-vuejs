@@ -238,7 +238,7 @@ export default {
       setTimeout(async () => {
         await this.$store.dispatch("fetchUser");
         await this.onSelectChange(this.selectedRowKeys)
-      }, 1000);
+      }, 500);
     }
   },
 };

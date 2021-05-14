@@ -147,6 +147,9 @@ const actions = {
     const [...newCart] = state.listUser.cart
     const newDataCart = newCart.map(item => {
       if (item.id === Number(payload.id)) {
+        if (isNaN(payload.number)) {
+          return item
+        }
         if (payload.number === "") {
           return {
             ...item,
@@ -165,7 +168,6 @@ const actions = {
           }
         }
       }
-      return item
     })
     const newUser = {
       ...state.listUser,
